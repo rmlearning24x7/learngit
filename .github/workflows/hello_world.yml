@@ -1,0 +1,27 @@
+name: Hello world workflow
+
+on:  # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: # To manually trigger a workflow
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      # Community Actions: created by Github: This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
+      - uses: actions/checkout@v3 # using v3 , i guess here you can use commithash or other minor versions after this one
+      - name: hello world
+        run: echo "Hello world"
+        shell: bash
+
+  goodbye:
+    runs-on: ubuntu-latest
+    steps:
+      - name: goodbye world
+        run: echo "Goodbye world"
+        shell: bash
