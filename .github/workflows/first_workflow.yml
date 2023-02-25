@@ -1,0 +1,36 @@
+name: first workflow
+
+on: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: # To manually trigger a workflow
+
+jobs:
+  jobname1:
+    runs-on: deere-ubuntu-latest
+    steps:
+      - name: step name 1
+        # Using actions created by GitHub
+        # This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
+        # GITHUB_WORKSPACE: The default working directory on the runner for steps, and the default location of your repository when using the checkout action.
+        # For example, /home/runner/work/my-repo-name/my-repo-name.
+        #
+        # We can create out own actions and publish to github marketplace.
+        uses: actions/checkout@v3 # using v3 , you can use commithash or other minor versions
+      - name: step name 2
+        run: echo "Running echo in bash1"
+        shell: bash
+      - name: step name 3 # steps in one job runs sequentially
+        run: echo "Running echo again in bash2"
+        shell: bash
+
+  jobname2: # by default jobs run in parallel unless specified otherwise
+    runs-on: deere-ubuntu-latest
+    steps:
+      - name: step name 4
+        run: echo "Running echo in bash3"
+        shell: bash
