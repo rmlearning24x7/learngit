@@ -1,0 +1,27 @@
+name: create a comment on new issues
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  comments-with-action:
+    runs-on: deere-ubuntu-latest
+    steps:
+      - name: "dump github context"
+        run: echo '${{ toJSON(github.event) }}' | jq
+        shell: bash
+      # A GitHub community action to create or update an issue or pull request comment.
+
+      - name: Create or Update Comment
+        uses: peter-evans/create-or-update-comment@v2.1.1
+
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            This is a multi-line test comment
+            - With GitHub **Markdown** :sparkles:
+            - Created by [create-or-update-comment][1]
+
+            [1]: https://github.com/peter-evans/create-or-update-comment
+          reactions: '+1'
