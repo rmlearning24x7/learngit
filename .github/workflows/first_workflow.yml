@@ -11,7 +11,7 @@ on: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-wor
 
 jobs:
   jobname1:
-    runs-on: deere-ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: step name 1
         # Using actions created by GitHub
@@ -29,7 +29,7 @@ jobs:
         shell: bash
 
   jobname2: # by default jobs run in parallel unless specified otherwise
-    runs-on: deere-ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: step name 4
         run: echo "Running echo in bash3"
