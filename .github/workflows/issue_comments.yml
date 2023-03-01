@@ -32,15 +32,15 @@ jobs:
         shell: bash
 
   comments-with-api:
-    permissions: write-all
+    #permissions: write-all
     runs-on: ubuntu-latest
     steps:
-      - name: Create comment with API
+      - name: Create comment with GH API
         run: |
           gh api -X POST \
             https://api.github.com/repos/${ORGANIZATION}/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
             -f body='
-            Comment but from the API call not action
+            Comments added with GH API call not Community Action
             '
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
