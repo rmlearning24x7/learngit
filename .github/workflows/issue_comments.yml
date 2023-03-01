@@ -32,7 +32,7 @@ jobs:
         shell: bash
 
   comments-with-api:
-    #permissions: write-all
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Create comment with GH API
