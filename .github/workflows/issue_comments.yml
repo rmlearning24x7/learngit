@@ -39,8 +39,10 @@ jobs:
         run: |
           gh api -X POST \
             https://api.github.com/repos/${ORGANIZATION}/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
-            -f body='
-            Comments added with GH API call not Community Action
+            -f body='|
+            This is a multi-line test comment
+            - With GitHub **Markdown** :sparkles:
+            - Created by [create-or-update-comment][1]
             '
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
